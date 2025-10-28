@@ -1,231 +1,448 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscrição - Viva Mais Cidadania Digital</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SESAU • Formulário de Mobilidade Interna</title>
+    <link
+      rel="icon"
+      href="https://statics.recife.pe.gov.br/images/dynamics/conecta/icons/favicon.png?w=32&h=32&fit=fill&border=2,transparent,shrink"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+      :root {
+        --brand-primary: #0053a4;
+        --brand-secondary: #003a73;
+        --brand-highlight: #00a3ff;
+        --surface: #f4f7fb;
+        --surface-strong: #ffffff;
+        --border-color: #d0d7e2;
+        --text-strong: #1b263b;
+        --text-muted: #5b6c8c;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--surface);
+        color: var(--text-strong);
+        min-height: 100vh;
+      }
+      header.site-header {
+        background: url("https://statics.recife.pe.gov.br/images/dynamics/automacao/header.png?w=3000") center/cover no-repeat;
+        color: #fff;
+        padding: 3rem 0 2.25rem;
+      }
+      header .lead {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+        line-height: 1.65;
+        max-width: 100%;
+      }
+      .badge-open {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+      }
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text-strong);
+      }
+      .section-title::before {
+        content: "";
+        display: inline-block;
+        width: 32px;
+        height: 3px;
+        border-radius: 999px;
+        background: var(--brand-highlight);
+      }
+      .card {
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .card-programa {
+        border: 1px solid rgba(0, 83, 164, 0.08);
+        border-radius: 4px;
+        background: var(--surface-strong);
+        box-shadow: 0 16px 34px rgba(0, 45, 98, 0.08);
+      }
+      .card-programa .card-header {
+        border-bottom: 1px solid rgba(0, 83, 164, 0.08);
+        background: linear-gradient(180deg, #fff 0%, #f5f8fc 100%);
+        padding: 1.25rem 1.25rem 1rem;
+      }
+      .muted {
+        color: var(--text-muted);
+      }
+      .actions-cell {
+        white-space: normal;
+        vertical-align: middle;
+      }
+      .actions-cell .actions-wrapper {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+      }
+      .btn-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        line-height: 1;
+      }
+      .btn-icon span[aria-hidden='true'] {
+        font-size: 1.05rem;
+      }
+      .prefs-responsive .table > :not(caption) > * > * {
+        padding: 0.85rem 1.1rem;
+        vertical-align: middle;
+      }
+      .uppercase {
+        text-transform: uppercase;
+      }
+      .small-note {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+      .table thead th {
+        white-space: nowrap;
+      }
+      .table-fixed {
+        table-layout: fixed;
+      }
+      .modal-alert-title {
+        color: #dc3545;
+      }
+      .alert-list {
+        padding-left: 1.1rem;
+      }
+      .modal-branding {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .modal-branding img {
+        height: 48px;
+        width: auto;
+      }
+      .resumo-card {
+        border: 1px solid rgba(0, 83, 164, 0.12);
+        border-radius: 12px;
+        background: linear-gradient(180deg, #ffffff 0%, rgba(244, 247, 251, 0.8) 100%);
+        box-shadow: 0 18px 46px rgba(0, 35, 79, 0.15);
+      }
+      .resumo-card .meta-label {
+        display: block;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 600;
+      }
+      .resumo-card .meta-value {
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: var(--text-strong);
+      }
+      .resumo-table thead {
+        background: #0053a4;
+        color: #fff;
+      }
+      .resumo-table th {
+        font-weight: 600;
+      }
+      .solicitacao-box {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.25rem;
+        padding: 0.65rem 1.65rem 0.75rem;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #eaf1ff 0%, #d5e2ff 100%);
+        border: 1px solid rgba(0, 83, 164, 0.15);
+        box-shadow: 0 18px 32px rgba(21, 56, 128, 0.12);
+        min-width: 260px;
+      }
+      .solicitacao-box .solicitacao-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(15, 44, 102, 0.7);
+        font-weight: 700;
+      }
+      .solicitacao-box .solicitacao-value {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #0f2c66;
+        word-break: break-word;
+        text-align: right;
+        align-self: stretch;
+        line-height: 1.05;
+      }
+      #printComprovante {
+        background: #fff;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 83, 164, 0.12);
+        box-shadow: 0 24px 80px rgba(0, 37, 84, 0.18);
+        overflow: hidden;
+        max-width: 960px;
+        margin: 0 auto;
+        color: var(--text-strong);
+      }
+      #printComprovante .receipt-header {
+        background: linear-gradient(135deg, #0053a4, #003a73);
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
+        padding: 1.75rem 2rem;
+        align-items: flex-start;
+      }
+      #printComprovante .receipt-header .brand {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      #printComprovante .receipt-header .brand img {
+        height: 60px;
+        width: auto;
+      }
+      #printComprovante .receipt-header .brand strong {
+        display: block;
+        font-size: 1.1rem;
+        letter-spacing: 0.02em;
+      }
+      #printComprovante .receipt-header .brand span {
+        display: block;
+        font-size: 0.9rem;
+        opacity: 0.85;
+      }
+      #printComprovante .receipt-header .protocol {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        text-align: right;
+        min-width: 180px;
+      }
+      #printComprovante .receipt-header .protocol .label {
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        opacity: 0.85;
+      }
+      #printComprovante .receipt-header .protocol .value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      #printComprovante .receipt-body {
+        padding: 2rem;
+      }
+      #printComprovante .receipt-body h5,
+      #printComprovante .receipt-body h4 {
+        font-weight: 700;
+        color: #003a73;
+      }
+      #printComprovante .receipt-intro p {
+        margin-bottom: 0;
+        color: var(--text-muted);
+      }
+      #printComprovante .receipt-info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+      }
+      #printComprovante .receipt-info-item {
+        background: rgba(0, 83, 164, 0.06);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+      }
+      #printComprovante .receipt-info-item .info-label {
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #003a73;
+        font-weight: 600;
+      }
+      #printComprovante .receipt-info-item .info-value {
+        display: block;
+        margin-top: 0.35rem;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      #printComprovante .receipt-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+      }
+      #printComprovante .receipt-table thead {
+        background: #0053a4;
+        color: #fff;
+      }
+      #printComprovante .receipt-table th,
+      #printComprovante .receipt-table td {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(0, 83, 164, 0.12);
+      }
+      #printComprovante .receipt-table tbody tr:nth-child(even) {
+        background: rgba(0, 83, 164, 0.03);
+      }
+      #printComprovante .receipt-footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        text-align: right;
+      }
+      @media print {
+        body * {
+          visibility: hidden !important;
         }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #5B9BD5 0%, #87CEEB 100%);
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        #printComprovante,
+        #printComprovante * {
+          visibility: visible !important;
         }
-
-        .container {
-            background: white;
-            border-radius: 30px;
-            padding: 40px;
-            max-width: 700px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        #printComprovante {
+          position: absolute;
+          inset: 0;
+          margin: 0 auto;
+          box-shadow: none;
         }
-
-        .logo-section {
-            text-align: center;
-            margin-bottom: 30px;
+      }
+      @media (max-width: 768px) {
+        header.site-header {
+          padding: 2.25rem 0 1.75rem;
         }
-
-        .logo-placeholder {
-            background: linear-gradient(90deg, #2E75B6, #70AD47, #FFC000, #ED7D31);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .badge-open {
+          width: 100%;
+          justify-content: center;
         }
-
-        .logo-subtitle {
-            font-size: 1.5em;
-            color: #666;
-            font-weight: bold;
-            margin-top: 10px;
+        .prefs-responsive {
+          overflow-x: visible;
         }
-
-        .digital-badge {
-            display: inline-block;
-            background: #2E75B6;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 10px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transform: rotate(-3deg);
-            margin-top: 10px;
+        .solicitacao-box {
+          width: 100%;
+          min-width: 0;
         }
-
-        h1 {
-            color: #2E75B6;
-            font-size: 2em;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.3;
+        .solicitacao-box .solicitacao-value {
+          font-size: 1.75rem;
         }
-
-        .intro-text {
-            font-size: 1.2em;
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-            line-height: 1.6;
+        #tabelaPrefs {
+          border-collapse: separate;
+          border-spacing: 0;
         }
-
-        .form-group {
-            margin-bottom: 25px;
+        #tabelaPrefs thead {
+          display: none;
         }
-
-        label {
-            display: block;
-            font-size: 1.2em;
-            color: #333;
-            margin-bottom: 8px;
-            font-weight: bold;
+        #tabelaPrefs tbody {
+          display: block;
         }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        select {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1em;
-            border: 3px solid #5B9BD5;
-            border-radius: 10px;
-            background: #F8FBFF;
-            transition: border-color 0.3s;
+        #tabelaPrefs tbody tr {
+          display: block;
+          border-radius: 16px;
+          background: var(--surface-strong);
+          border: 1px solid rgba(0, 83, 164, 0.12);
+          box-shadow: 0 18px 40px rgba(0, 35, 79, 0.12);
+          padding: 1.35rem 1.5rem;
+          margin-bottom: 1.15rem;
         }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: #2E75B6;
-            background: white;
+        #tabelaPrefs tbody tr:last-child {
+          margin-bottom: 0;
         }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 10px;
+        #tabelaPrefs tbody td {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.4rem;
+          padding: 0.65rem 0;
+          border-bottom: 1px solid rgba(0, 83, 164, 0.08);
+          text-align: left;
         }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            background: #F8FBFF;
-            border: 2px solid #5B9BD5;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
+        #tabelaPrefs tbody td:last-child {
+          border-bottom: 0;
         }
-
-        .radio-option:hover {
-            background: #E8F4FF;
-            border-color: #2E75B6;
+        #tabelaPrefs tbody td::before {
+          content: attr(data-label);
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          margin-bottom: 0.1rem;
         }
-
-        .radio-option input[type="radio"] {
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-            cursor: pointer;
+        #tabelaPrefs tbody td.actions-cell {
+          flex-direction: column;
+          align-items: stretch;
+          text-align: left;
         }
-
-        .radio-option label {
-            margin: 0;
-            font-size: 1.1em;
-            font-weight: normal;
-            cursor: pointer;
+        #tabelaPrefs tbody td.actions-cell::before {
+          margin-bottom: 0.75rem;
         }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
-            font-size: 1.3em;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #70AD47, #4CAF50);
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 20px;
+        #tabelaPrefs tbody td.actions-cell .actions-wrapper {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+          width: 100%;
         }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+        #tabelaPrefs tbody td.actions-cell .actions-wrapper .btn {
+          width: auto;
         }
-
-        .submit-btn:active {
-            transform: translateY(0);
+      }
+      @media (max-width: 576px) {
+        #tabelaPrefs {
+          table-layout: fixed;
+          width: 100%;
         }
-
-        .success-message {
-            display: none;
-            background: #D4EDDA;
-            border: 3px solid #4CAF50;
-            color: #155724;
-            padding: 25px;
-            border-radius: 15px;
-            text-align: center;
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-top: 20px;
+        #tabelaPrefs thead th,
+        #tabelaPrefs tbody td {
+          padding: 0.5rem;
+          line-height: 1.3;
+          font-size: 0.95rem;
+          word-break: break-word;
+          white-space: normal;
         }
-
-        .success-message.show {
-            display: block;
+        #tabelaPrefs tbody tr {
+          padding: 0.85rem 1rem;
         }
-
-        .required {
-            color: #ED7D31;
-            font-weight: bold;
+        #tabelaPrefs tbody td {
+          min-height: 44px;
         }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 25px;
-            }
-
-            h1 {
-                font-size: 1.6em;
-            }
-
-            .intro-text {
-                font-size: 1.1em;
-            }
-
-            label {
-                font-size: 1.1em;
-            }
-
-            input[type="text"],
-            input[type="email"],
-            input[type="tel"],
-            select {
-                font-size: 1em;
-                padding: 12px;
-            }
-
-            .submit-btn {
-                font-size: 1.2em;
-                padding: 15px;
-            }
+        #tabelaPrefs tbody td.actions-cell .actions-wrapper {
+          gap: 0.6rem;
         }
+        #tabelaPrefs tbody td.actions-cell .actions-wrapper .btn {
+          margin: 0.1rem 0;
+        }
+      }
     </style>
-</head>
+  </head>
 <body>
     <div class="container">
         <div class="logo-section">
