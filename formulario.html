@@ -23,44 +23,74 @@
         --brand-primary: #0053a4;
         --brand-secondary: #003a73;
         --brand-highlight: #00a3ff;
+        --brand-soft: #e5f1ff;
         --surface: #f4f7fb;
         --surface-strong: #ffffff;
-        --border-color: #d0d7e2;
         --text-strong: #1b263b;
         --text-muted: #5b6c8c;
       }
+
       *,
       *::before,
       *::after {
         box-sizing: border-box;
       }
+
       body {
         font-family: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         background: var(--surface);
         color: var(--text-strong);
         min-height: 100vh;
       }
-      header.site-header {
-        background: url("https://statics.recife.pe.gov.br/images/dynamics/automacao/header.png?w=3000") center/cover no-repeat;
+
+      .site-header {
+        position: relative;
+        overflow: hidden;
+        padding: 4.5rem 0 3.5rem;
         color: #fff;
-        padding: 3rem 0 2.25rem;
+        background: radial-gradient(circle at top right, rgba(0, 163, 255, 0.4), transparent 55%),
+          linear-gradient(135deg, rgba(0, 60, 140, 0.94), rgba(0, 40, 98, 0.94)),
+          url("https://statics.recife.pe.gov.br/images/dynamics/automacao/header.png?w=3000") center/cover no-repeat;
       }
-      header .lead {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 1rem;
-        line-height: 1.65;
-        max-width: 100%;
+
+      .hero-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
       }
+
       .badge-open {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 0.95rem;
+        gap: 0.6rem;
+        padding: 0.6rem 1.2rem;
         font-weight: 600;
-        padding: 0.45rem 0.9rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.16);
+        color: #fff;
+      }
+
+      .badge-open span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.25);
+        font-weight: 700;
+      }
+
+      .info-pill {
+        font-size: 0.9rem;
+        padding: 0.55rem 1.1rem;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.14);
+        color: rgba(255, 255, 255, 0.9);
       }
+
       .section-title {
         display: flex;
         align-items: center;
@@ -69,6 +99,7 @@
         font-size: 1.2rem;
         color: var(--text-strong);
       }
+
       .section-title::before {
         content: "";
         display: inline-block;
@@ -77,425 +108,273 @@
         border-radius: 999px;
         background: var(--brand-highlight);
       }
-      .card {
-        border-radius: 4px;
-        overflow: hidden;
-      }
+
       .card-programa {
-        border: 1px solid rgba(0, 83, 164, 0.08);
-        border-radius: 4px;
-        background: var(--surface-strong);
-        box-shadow: 0 16px 34px rgba(0, 45, 98, 0.08);
-      }
-      .card-programa .card-header {
-        border-bottom: 1px solid rgba(0, 83, 164, 0.08);
-        background: linear-gradient(180deg, #fff 0%, #f5f8fc 100%);
-        padding: 1.25rem 1.25rem 1rem;
-      }
-      .muted {
-        color: var(--text-muted);
-      }
-      .actions-cell {
-        white-space: normal;
-        vertical-align: middle;
-      }
-      .actions-cell .actions-wrapper {
-        display: inline-flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        width: 100%;
-      }
-      .btn-icon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.35rem;
-        min-width: 2.5rem;
-        min-height: 2.5rem;
-        line-height: 1;
-      }
-      .btn-icon span[aria-hidden='true'] {
-        font-size: 1.05rem;
-      }
-      .prefs-responsive .table > :not(caption) > * > * {
-        padding: 0.85rem 1.1rem;
-        vertical-align: middle;
-      }
-      .uppercase {
-        text-transform: uppercase;
-      }
-      .small-note {
-        font-size: 0.8rem;
-        color: var(--text-muted);
-      }
-      .table thead th {
-        white-space: nowrap;
-      }
-      .table-fixed {
-        table-layout: fixed;
-      }
-      .modal-alert-title {
-        color: #dc3545;
-      }
-      .alert-list {
-        padding-left: 1.1rem;
-      }
-      .modal-branding {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-      .modal-branding img {
-        height: 48px;
-        width: auto;
-      }
-      .resumo-card {
         border: 1px solid rgba(0, 83, 164, 0.12);
-        border-radius: 12px;
-        background: linear-gradient(180deg, #ffffff 0%, rgba(244, 247, 251, 0.8) 100%);
+        border-radius: 18px;
+        background: var(--surface-strong);
+        box-shadow: 0 24px 60px rgba(7, 34, 75, 0.12);
+      }
+
+      .card-programa .card-header {
+        border-bottom: 1px solid rgba(0, 83, 164, 0.12);
+        background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
+      }
+
+      .card-programa .card-header h2 {
+        font-weight: 700;
+        color: var(--brand-secondary);
+      }
+
+      .card-programa .card-body {
+        padding: 2rem;
+      }
+
+      .form-control,
+      .form-select {
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        box-shadow: 0 0 0 0.25rem rgba(0, 163, 255, 0.2);
+        border-color: var(--brand-highlight);
+      }
+
+      .form-section-title {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 700;
+        color: var(--text-muted);
+        margin-bottom: 0.75rem;
+      }
+
+      .form-check-input:checked {
+        background-color: var(--brand-primary);
+        border-color: var(--brand-primary);
+      }
+
+      .submit-btn {
+        background: linear-gradient(135deg, #00a3ff, #0053a4);
+        border: 0;
+        padding: 0.85rem 1.25rem;
+        border-radius: 0.85rem;
+        font-weight: 600;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .submit-btn:hover,
+      .submit-btn:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 30px rgba(0, 83, 164, 0.18);
+      }
+
+      .success-message {
+        border-radius: 1rem;
+        box-shadow: 0 18px 42px rgba(18, 61, 112, 0.18);
+      }
+
+      .resumo-card {
+        background: linear-gradient(180deg, #ffffff 0%, rgba(229, 241, 255, 0.85) 100%);
+        border-radius: 18px;
+        border: 1px solid rgba(0, 83, 164, 0.15);
+        padding: 2rem;
         box-shadow: 0 18px 46px rgba(0, 35, 79, 0.15);
       }
+
       .resumo-card .meta-label {
         display: block;
         font-size: 0.75rem;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-muted);
         font-weight: 600;
       }
+
       .resumo-card .meta-value {
-        font-weight: 600;
-        font-size: 1.05rem;
-        color: var(--text-strong);
-      }
-      .resumo-table thead {
-        background: #0053a4;
-        color: #fff;
-      }
-      .resumo-table th {
-        font-weight: 600;
-      }
-      .solicitacao-box {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.25rem;
-        padding: 0.65rem 1.65rem 0.75rem;
-        border-radius: 18px;
-        background: linear-gradient(135deg, #eaf1ff 0%, #d5e2ff 100%);
-        border: 1px solid rgba(0, 83, 164, 0.15);
-        box-shadow: 0 18px 32px rgba(21, 56, 128, 0.12);
-        min-width: 260px;
-      }
-      .solicitacao-box .solicitacao-label {
-        font-size: 0.75rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(15, 44, 102, 0.7);
+        font-size: 1.25rem;
         font-weight: 700;
+        color: var(--brand-secondary);
       }
-      .solicitacao-box .solicitacao-value {
-        font-size: 1.9rem;
-        font-weight: 700;
-        color: #0f2c66;
-        word-break: break-word;
-        text-align: right;
-        align-self: stretch;
-        line-height: 1.05;
+
+      .list-check {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
-      #printComprovante {
-        background: #fff;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 83, 164, 0.12);
-        box-shadow: 0 24px 80px rgba(0, 37, 84, 0.18);
-        overflow: hidden;
-        max-width: 960px;
-        margin: 0 auto;
-        color: var(--text-strong);
-      }
-      #printComprovante .receipt-header {
-        background: linear-gradient(135deg, #0053a4, #003a73);
-        color: #fff;
+
+      .list-check li {
         display: flex;
-        justify-content: space-between;
-        gap: 2rem;
-        padding: 1.75rem 2rem;
+        gap: 0.75rem;
         align-items: flex-start;
+        margin-bottom: 1rem;
+        color: var(--text-muted);
       }
-      #printComprovante .receipt-header .brand {
+
+      .list-check li:last-child {
+        margin-bottom: 0;
+      }
+
+      .check-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-primary);
+        font-weight: 700;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      .timeline-step {
         display: flex;
         gap: 1rem;
         align-items: flex-start;
-      }
-      #printComprovante .receipt-header .brand img {
-        height: 60px;
-        width: auto;
-      }
-      #printComprovante .receipt-header .brand strong {
-        display: block;
-        font-size: 1.1rem;
-        letter-spacing: 0.02em;
-      }
-      #printComprovante .receipt-header .brand span {
-        display: block;
-        font-size: 0.9rem;
-        opacity: 0.85;
-      }
-      #printComprovante .receipt-header .protocol {
-        background: rgba(255, 255, 255, 0.12);
-        border-radius: 12px;
-        padding: 1rem 1.25rem;
-        text-align: right;
-        min-width: 180px;
-      }
-      #printComprovante .receipt-header .protocol .label {
-        font-size: 0.8rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        opacity: 0.85;
-      }
-      #printComprovante .receipt-header .protocol .value {
-        font-size: 1.75rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-      }
-      #printComprovante .receipt-body {
-        padding: 2rem;
-      }
-      #printComprovante .receipt-body h5,
-      #printComprovante .receipt-body h4 {
-        font-weight: 700;
-        color: #003a73;
-      }
-      #printComprovante .receipt-intro p {
-        margin-bottom: 0;
-        color: var(--text-muted);
-      }
-      #printComprovante .receipt-info-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.5rem;
-        margin: 2rem 0;
-      }
-      #printComprovante .receipt-info-item {
+        padding: 1.25rem 1.5rem;
+        border-radius: 18px;
         background: rgba(0, 83, 164, 0.06);
-        border-radius: 10px;
-        padding: 1rem 1.25rem;
-      }
-      #printComprovante .receipt-info-item .info-label {
-        font-size: 0.8rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #003a73;
-        font-weight: 600;
-      }
-      #printComprovante .receipt-info-item .info-value {
-        display: block;
-        margin-top: 0.35rem;
-        font-size: 1rem;
-        font-weight: 600;
-      }
-      #printComprovante .receipt-table {
-        width: 100%;
-        border-collapse: collapse;
-        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
-      }
-      #printComprovante .receipt-table thead {
-        background: #0053a4;
-        color: #fff;
-      }
-      #printComprovante .receipt-table th,
-      #printComprovante .receipt-table td {
-        font-size: 0.9rem;
-        padding: 0.75rem 1rem;
         border: 1px solid rgba(0, 83, 164, 0.12);
       }
-      #printComprovante .receipt-table tbody tr:nth-child(even) {
-        background: rgba(0, 83, 164, 0.03);
+
+      .timeline-step strong {
+        font-size: 1.1rem;
+        color: var(--brand-secondary);
       }
-      #printComprovante .receipt-footer {
-        margin-top: 2rem;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-        text-align: right;
+
+      footer {
+        background: #0b2f63;
+        color: rgba(255, 255, 255, 0.82);
+        padding: 2rem 0;
       }
-      @media print {
-        body * {
-          visibility: hidden !important;
-        }
-        #printComprovante,
-        #printComprovante * {
-          visibility: visible !important;
-        }
-        #printComprovante {
-          position: absolute;
-          inset: 0;
-          margin: 0 auto;
-          box-shadow: none;
+
+      footer a {
+        color: rgba(255, 255, 255, 0.92);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 991.98px) {
+        .card-programa .card-body {
+          padding: 1.5rem;
         }
       }
-      @media (max-width: 768px) {
-        header.site-header {
-          padding: 2.25rem 0 1.75rem;
+
+      @media (max-width: 575.98px) {
+        .site-header {
+          padding: 3.5rem 0 2.75rem;
+          text-align: center;
         }
-        .badge-open {
+
+        .hero-badges {
+          justify-content: center;
+        }
+
+        .badge-open,
+        .info-pill {
           width: 100%;
           justify-content: center;
         }
-        .prefs-responsive {
-          overflow-x: visible;
-        }
-        .solicitacao-box {
-          width: 100%;
-          min-width: 0;
-        }
-        .solicitacao-box .solicitacao-value {
-          font-size: 1.75rem;
-        }
-        #tabelaPrefs {
-          border-collapse: separate;
-          border-spacing: 0;
-        }
-        #tabelaPrefs thead {
-          display: none;
-        }
-        #tabelaPrefs tbody {
-          display: block;
-        }
-        #tabelaPrefs tbody tr {
-          display: block;
-          border-radius: 16px;
-          background: var(--surface-strong);
-          border: 1px solid rgba(0, 83, 164, 0.12);
-          box-shadow: 0 18px 40px rgba(0, 35, 79, 0.12);
-          padding: 1.35rem 1.5rem;
-          margin-bottom: 1.15rem;
-        }
-        #tabelaPrefs tbody tr:last-child {
-          margin-bottom: 0;
-        }
-        #tabelaPrefs tbody td {
-          display: flex;
+
+        .timeline-step {
           flex-direction: column;
           align-items: flex-start;
-          gap: 0.4rem;
-          padding: 0.65rem 0;
-          border-bottom: 1px solid rgba(0, 83, 164, 0.08);
-          text-align: left;
-        }
-        #tabelaPrefs tbody td:last-child {
-          border-bottom: 0;
-        }
-        #tabelaPrefs tbody td::before {
-          content: attr(data-label);
-          font-size: 0.75rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--text-muted);
-          margin-bottom: 0.1rem;
-        }
-        #tabelaPrefs tbody td.actions-cell {
-          flex-direction: column;
-          align-items: stretch;
-          text-align: left;
-        }
-        #tabelaPrefs tbody td.actions-cell::before {
-          margin-bottom: 0.75rem;
-        }
-        #tabelaPrefs tbody td.actions-cell .actions-wrapper {
-          flex-direction: column;
-          align-items: center;
-          gap: 0.75rem;
-          width: 100%;
-        }
-        #tabelaPrefs tbody td.actions-cell .actions-wrapper .btn {
-          width: auto;
-        }
-      }
-      @media (max-width: 576px) {
-        #tabelaPrefs {
-          table-layout: fixed;
-          width: 100%;
-        }
-        #tabelaPrefs thead th,
-        #tabelaPrefs tbody td {
-          padding: 0.5rem;
-          line-height: 1.3;
-          font-size: 0.95rem;
-          word-break: break-word;
-          white-space: normal;
-        }
-        #tabelaPrefs tbody tr {
-          padding: 0.85rem 1rem;
-        }
-        #tabelaPrefs tbody td {
-          min-height: 44px;
-        }
-        #tabelaPrefs tbody td.actions-cell .actions-wrapper {
-          gap: 0.6rem;
-        }
-        #tabelaPrefs tbody td.actions-cell .actions-wrapper .btn {
-          margin: 0.1rem 0;
         }
       }
     </style>
-  </head>
+</head>
 <body>
+  <header class="site-header">
     <div class="container">
-        <div class="logo-section">
-            <div class="logo-placeholder">VIVA MAIS</div>
-            <div class="logo-subtitle">Cidadania</div>
-            <div class="digital-badge">DIGITAL</div>
+      <div class="hero-badges">
+        <span class="badge-open"><span>✓</span> Inscrições abertas</span>
+        <span class="info-pill">Formação gratuita para todas as idades</span>
+      </div>
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <h1 class="display-5 fw-bold mb-3">Viva Mais Cidadania Digital</h1>
+          <p class="lead mb-4">
+            Aprenda a dominar o celular, navegar na internet com segurança e aproveitar os serviços digitais da cidade.
+            Participe das turmas presenciais espalhadas pelo Recife.
+          </p>
+          <div class="row g-3 text-start text-lg-start">
+            <div class="col-sm-4">
+              <div class="resumo-card h-100">
+                <span class="meta-label">Duração</span>
+                <span class="meta-value">5 encontros</span>
+                <p class="text-muted small mb-0">Aulas dinâmicas com facilitação presencial.</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="resumo-card h-100">
+                <span class="meta-label">Carga horária</span>
+                <span class="meta-value">20 horas</span>
+                <p class="text-muted small mb-0">Com certificado emitido pela Prefeitura do Recife.</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="resumo-card h-100">
+                <span class="meta-label">Formato</span>
+                <span class="meta-value">Presencial</span>
+                <p class="text-muted small mb-0">Turmas em diversos centros comunitários.</p>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <h1>Inscrição – Viva Mais Cidadania Digital</h1>
-        
-        <p class="intro-text">
-            Preencha o formulário abaixo para participar do curso de letramento digital e aprender a usar o celular e a internet de forma simples e segura.
-        </p>
-
-        <form id="inscricaoForm">
-            <div class="form-group">
-                <label for="nome">Nome completo <span class="required">*</span></label>
-                <input type="text" id="nome" name="nome" required>
+        <div class="col-lg-5">
+          <div class="card card-programa border-0">
+            <div class="card-header py-4">
+              <h2 class="h4 mb-1">Quero participar</h2>
+              <p class="text-muted mb-0">Preencha os dados para reservar sua vaga.</p>
             </div>
-
-            <div class="form-group">
-                <label for="telefone">Telefone (WhatsApp, se tiver) <span class="required">*</span></label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(81) 99999-9999" required>
-            </div>
-
-            <div class="form-group">
-                <label for="cpf">CPF <span class="required">*</span></label>
-                <input type="text" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">E-mail (opcional)</label>
-                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com">
-            </div>
-
-            <div class="form-group">
-                <label>Você já participou do curso Viva Mais Cidadania Digital antes? <span class="required">*</span></label>
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="participou-sim" name="participou" value="sim" required>
-                        <label for="participou-sim">Sim, já participei</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" id="participou-nao" name="participou" value="nao" required>
-                        <label for="participou-nao">Não, é a primeira vez</label>
-                    </div>
+            <div class="card-body">
+              <form id="inscricaoForm" class="needs-validation" novalidate>
+                <div class="mb-4">
+                  <label for="nome" class="form-label fw-semibold">Nome completo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" required>
+                  <div class="invalid-feedback">Informe seu nome completo.</div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="local">Escolha o local do curso <span class="required">*</span></label>
-                <select id="local" name="local" required>
-                    <option value="">Selecione um local</option>
+                <div class="mb-4">
+                  <label for="telefone" class="form-label fw-semibold">Telefone (WhatsApp, se tiver) <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(81) 99999-9999" required>
+                  <div class="invalid-feedback">Informe um número de telefone válido.</div>
+                </div>
+                <div class="mb-4">
+                  <label for="cpf" class="form-label fw-semibold">CPF <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                  <div class="invalid-feedback">Digite um CPF válido com 11 dígitos.</div>
+                </div>
+                <div class="mb-4">
+                  <label for="email" class="form-label fw-semibold">E-mail (opcional)</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com">
+                  <div class="invalid-feedback">Informe um e-mail válido.</div>
+                </div>
+                <div class="mb-4">
+                  <p class="form-section-title mb-2">Participação anterior</p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="participou" id="participou-sim" value="sim" required>
+                    <label class="form-check-label" for="participou-sim">Sim, já participei</label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="radio" name="participou" id="participou-nao" value="nao" required>
+                    <label class="form-check-label" for="participou-nao">Não, é a primeira vez</label>
+                    <div class="invalid-feedback">Escolha uma opção.</div>
+                  </div>
+                </div>
+                <div class="mb-4">
+                  <label for="local" class="form-label fw-semibold">Escolha o local do curso <span class="text-danger">*</span></label>
+                  <select class="form-select" id="local" name="local" required>
+                    <option value="" selected>Selecione um local</option>
                     <option value="centro-arrecifes">Centro Arrecifes da Cidadania</option>
                     <option value="compaz-leda">Compaz Atriz Leda Alves</option>
                     <option value="compaz-helder">Compaz Dom Hélder Câmara</option>
@@ -503,88 +382,243 @@
                     <option value="compaz-eduardo">Compaz Governador Eduardo Campos</option>
                     <option value="compaz-ariano">Compaz Ariano Suassuna</option>
                     <option value="compaz-miguel">Compaz Miguel Arraes</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Direito de imagem <span class="required">*</span></label>
-                <div class="radio-group">
-                    <div class="radio-option">
-                        <input type="radio" id="imagem-sim" name="imagem" value="sim" required>
-                        <label for="imagem-sim">Sim, autorizo o uso da minha imagem</label>
-                    </div>
-                    <div class="radio-option">
-                        <input type="radio" id="imagem-nao" name="imagem" value="nao" required>
-                        <label for="imagem-nao">Não autorizo</label>
-                    </div>
+                  </select>
+                  <div class="invalid-feedback">Selecione o local mais conveniente.</div>
                 </div>
+                <div class="mb-4">
+                  <p class="form-section-title mb-2">Direito de imagem <span class="text-danger">*</span></p>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="imagem" id="imagem-sim" value="sim" required>
+                    <label class="form-check-label" for="imagem-sim">Sim, autorizo o uso da minha imagem</label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="radio" name="imagem" id="imagem-nao" value="nao" required>
+                    <label class="form-check-label" for="imagem-nao">Não autorizo</label>
+                    <div class="invalid-feedback">Confirme sua autorização de imagem.</div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary submit-btn w-100">Enviar inscrição</button>
+                <p class="text-muted small mt-3 mb-0">
+                  Após o envio, nossa equipe entrará em contato para confirmar a turma e orientar sobre a documentação.
+                </p>
+              </form>
+              <div id="successMessage" class="alert alert-success success-message d-none mb-0">
+                <div class="d-flex align-items-start gap-3">
+                  <span class="check-icon flex-shrink-0">✓</span>
+                  <div>
+                    <h3 class="h5 mb-1">Inscrição enviada com sucesso!</h3>
+                    <p class="mb-0">Você receberá uma mensagem com os próximos passos para participar do Viva Mais Cidadania Digital.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-
-            <button type="submit" class="submit-btn">Enviar inscrição</button>
-
-            <div id="successMessage" class="success-message">
-                ✓ Sua inscrição foi enviada com sucesso! Nossa equipe entrará em contato com mais informações.
-            </div>
-        </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <script>
-        // Máscara para CPF
-        const cpfInput = document.getElementById('cpf');
-        cpfInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length <= 11) {
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d)/, '$1.$2');
-                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-                e.target.value = value;
-            }
-        });
+  <main class="py-5 py-lg-6">
+    <div class="container">
+      <section class="mb-5">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title">Por que participar?</h2>
+            <ul class="list-check mt-4">
+              <li>
+                <span class="check-icon">1</span>
+                <div>
+                  <strong>Conteúdo prático e atualizado.</strong>
+                  <p class="mb-0">Aprenda a usar aplicativos de mensagens, redes sociais e serviços públicos digitais com segurança.</p>
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">2</span>
+                <div>
+                  <strong>Equipe especializada.</strong>
+                  <p class="mb-0">Facilitadores preparados para acompanhar cada participante de acordo com seu ritmo.</p>
+                </div>
+              </li>
+              <li>
+                <span class="check-icon">3</span>
+                <div>
+                  <strong>Certificação garantida.</strong>
+                  <p class="mb-0">Receba um certificado reconhecido e fortaleça suas oportunidades no mundo digital.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <div class="timeline">
+              <div class="timeline-step">
+                <span class="check-icon">01</span>
+                <div>
+                  <strong>Inscrição</strong>
+                  <p class="mb-0">Preencha seus dados e escolha o local onde deseja participar.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <span class="check-icon">02</span>
+                <div>
+                  <strong>Confirmação</strong>
+                  <p class="mb-0">Nossa equipe entrará em contato para confirmar disponibilidade de turmas e horários.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <span class="check-icon">03</span>
+                <div>
+                  <strong>Comece o curso</strong>
+                  <p class="mb-0">Participe das aulas presenciais, receba materiais exclusivos e conclua com certificação.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        // Máscara para telefone
-        const telefoneInput = document.getElementById('telefone');
-        telefoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length <= 11) {
-                value = value.replace(/^(\d{2})(\d)/, '($1) $2');
-                value = value.replace(/(\d{5})(\d)/, '$1-$2');
-                e.target.value = value;
-            }
-        });
+      <section class="mb-5">
+        <h2 class="section-title mb-4">Locais com turmas ativas</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Centros comunitários</h3>
+                <p class="text-muted">Ambientes acolhedores com infraestrutura completa para as aulas presenciais.</p>
+                <span class="badge text-bg-primary rounded-pill">Compaz</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Turmas inclusivas</h3>
+                <p class="text-muted">Atividades pensadas para pessoas iniciantes, com materiais acessíveis e linguagem simples.</p>
+                <span class="badge text-bg-info rounded-pill">Acessibilidade</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+              <div class="card-body">
+                <h3 class="h5">Horários flexíveis</h3>
+                <p class="text-muted">Escolha entre turmas pela manhã, tarde ou noite conforme sua rotina.</p>
+                <span class="badge text-bg-success rounded-pill">Vagas limitadas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        // Submissão do formulário
-        const form = document.getElementById('inscricaoForm');
-        const successMessage = document.getElementById('successMessage');
+      <section>
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-5">
+            <h2 class="section-title">Dúvidas frequentes</h2>
+            <p class="mt-3 text-muted">
+              Se você tem alguma necessidade específica, nossa equipe está pronta para ajudar. Entre em contato pelo telefone
+              (81) 3355-1234 ou envie uma mensagem pelo WhatsApp.
+            </p>
+          </div>
+          <div class="col-lg-7">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+                    O curso é gratuito?
+                  </button>
+                </h2>
+                <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Sim! Todas as turmas do Viva Mais Cidadania Digital são 100% gratuitas e destinadas à população do Recife.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                    Preciso levar algum material?
+                  </button>
+                </h2>
+                <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Os equipamentos necessários ficam por conta da equipe do programa. Você pode levar seu celular para praticar e tirar dúvidas.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+                    Há limite de idade para participar?
+                  </button>
+                </h2>
+                <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Não. O curso é pensado para adultos e pessoas idosas que desejam ampliar seu acesso ao universo digital, respeitando o ritmo de cada participante.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validar campos obrigatórios
-            const nome = document.getElementById('nome').value.trim();
-            const telefone = document.getElementById('telefone').value.trim();
-            const cpf = document.getElementById('cpf').value.trim();
-            const participou = document.querySelector('input[name="participou"]:checked');
-            const local = document.getElementById('local').value;
-            const imagem = document.querySelector('input[name="imagem"]:checked');
+  <footer>
+    <div class="container">
+      <div class="row align-items-center gy-3">
+        <div class="col-md-8">
+          <p class="mb-0 small">
+            Viva Mais Cidadania Digital • Secretaria de Saúde do Recife. Construindo uma cidade mais conectada, inclusiva e digital para todos.
+          </p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <a href="https://www2.recife.pe.gov.br" target="_blank" rel="noopener">Site oficial do Recife</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-            if (!nome || !telefone || !cpf || !participou || !local || !imagem) {
-                alert('Por favor, preencha todos os campos obrigatórios marcados com *');
-                return;
-            }
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const cpfInput = document.getElementById('cpf');
+    const telefoneInput = document.getElementById('telefone');
+    const form = document.getElementById('inscricaoForm');
+    const successMessage = document.getElementById('successMessage');
 
-            // Validar CPF (apenas comprimento)
-            if (cpf.replace(/\D/g, '').length !== 11) {
-                alert('Por favor, insira um CPF válido com 11 dígitos.');
-                return;
-            }
+    cpfInput.addEventListener('input', (event) => {
+      let value = event.target.value.replace(/\D/g, '');
+      if (value.length > 11) {
+        value = value.slice(0, 11);
+      }
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d)/, '$1.$2');
+      value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+      event.target.value = value;
+    });
 
-            // Simular envio e mostrar mensagem de sucesso
-            form.style.display = 'none';
-            successMessage.classList.add('show');
+    telefoneInput.addEventListener('input', (event) => {
+      let value = event.target.value.replace(/\D/g, '');
+      if (value.length > 11) {
+        value = value.slice(0, 11);
+      }
+      value = value.replace(/^(\d{2})(\d)/, '($1) $2');
+      value = value.replace(/(\d{5})(\d)/, '$1-$2');
+      event.target.value = value;
+    });
 
-            // Scroll suave para a mensagem
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-    </script>
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        event.preventDefault();
+        form.classList.add('d-none');
+        successMessage.classList.remove('d-none');
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      form.classList.add('was-validated');
+    });
+  </script>
 </body>
 </html>
